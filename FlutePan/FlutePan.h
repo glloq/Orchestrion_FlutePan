@@ -8,14 +8,13 @@
 
 class FlutePan {
 private:
-    Adafruit_MCP23X17 mcp;
-    uint32_t solenoidActivationTimes[16];  // Pour suivre quand chaque solénoïde a été activé
-    bool solenoidStates[16];  // Pour suivre l'état actif/désactivé des solénoïdes
+    Adafruit_MCP23X17 mcp[MAX_MCPs];
+    uint32_t solenoidActivationTimes[NOTE_NUMBER];  // Pour suivre quand chaque solénoïde a été activé
+    bool solenoidStates[NOTE_NUMBER];  // Pour suivre l'état actif/désactivé des solénoïdes
     bool active;  // Pour savoir si un solénoïde est actuellement actif
 
 public:
     FlutePan();
-    void begin();
     void playMidiNote(byte note, byte velocity);
     void stopMidiNote(byte note);
     void update();  // Gérer le temps d'activation des solénoïdes
